@@ -26,23 +26,21 @@ const data = {
 // This function returns a predetermined message with random data from the 'data' object.
 const randMessage = () => {
 
-    // Here, we assign randomly selected data from our 'data' object and assign it to variables.
-    let chosenBuilding = data.buildings[Math.floor(Math.random() * data.buildings.length)];
-    let chosenCountry = data.countries[Math.floor(Math.random() * data.countries.length)];
-    let chosenAdjective = data.adjectives[Math.floor(Math.random() * data.adjectives.length)];
-    let chosenAnimal = data.animals[Math.floor(Math.random() * data.animals.length)];
-    let chosenAnimals = data.pluralAnimals[Math.floor(Math.random() * data.pluralAnimals.length)];
+    // This function returns a random word stored in the desired array.
+    const randWord = pointer => {
+        return pointer[Math.floor(Math.random() * pointer.length)];
+    };
 
     // A random number of animals will be assigned to the 'numberOfAnimals' variable.
-    let numberOfAnimals = Math.floor(Math.random() * 6);
+    let numberOfAnimals = Math.floor(Math.random() * (6 - 1) + 1);
 
     // This 'if' statement returns a different message based on how many animals are in the 'numberOfAnimals' variable.
     if (numberOfAnimals <= 1) {
-        // If there is more than 1 animal the statement will return a random animal from 'chosenAnimals'. 
-        return `In the future you will live in ${chosenCountry}, in a ${chosenAdjective} ${chosenBuilding} with ${numberOfAnimals} ${chosenAnimal}!`;
+        // If there is more than 1 animal the statement will return a random animal from the 'animals' array. 
+        return `In the future you will live in ${randWord(data.countries)}, in a ${randWord(data.adjectives)} ${randWord(data.buildings)} with ${numberOfAnimals} ${randWord(data.animals)}!`;
     } else {
-        // If there is only one animal the statement will return a random animal from 'choseAnimal.
-        return `In the future you will live in ${chosenCountry}, in a ${chosenAdjective} ${chosenBuilding} with ${numberOfAnimals} ${chosenAnimals}!`;
+        // If there is only one animal the statement will return a random animal from the 'pluraAnimals array.
+        return `In the future you will live in ${randWord(data.countries)}, in a ${randWord(data.adjectives)} ${randWord(data.buildings)} with ${numberOfAnimals} ${randWord(data.pluralAnimals)}!`;
     };
 };
 
